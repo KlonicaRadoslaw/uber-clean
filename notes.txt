@@ -1,0 +1,181 @@
+rejeestracja - login(email) haslo + prosta walidacja
+logowanie
+
+Factory:
+user -> driver, regularUser
+order -> ride, items
+
+Sigleton + facade
+user service
+order service
+
+Builder
+
+
+Prototype
+
+
+
+
+
+
+
+
+
+
+
+
+
+import jakarta.persistence.*;
+import lombok.*;
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name = "uber_user")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UberUser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long uberId;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String email;
+    private String address;
+    private LocalDate dateOfBirth;
+}
+
+@Entity
+@Table(name = "customer")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
+    @Id
+    private Long cid;
+    private String customerType;
+    private String promoCode;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "cid")
+    private UberUser user;
+}
+
+@Entity
+@Table(name = "driver")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Driver {
+    @Id
+    private Long did;
+    private String ssn;
+    private String dlNo;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "did")
+    private UberUser user;
+}
+
+@Entity
+@Table(name = "vehicle")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Vehicle {
+    @Id
+    private String vid;
+    private String model;
+    private String color;
+    private int manufactureYear;
+    private LocalDate purchaseDate;
+    private boolean active;
+    private String condition;
+    private int capacity;
+    private String insuranceNo;
+    private LocalDate lastChecked;
+
+    @ManyToOne
+    @JoinColumn(name = "did")
+    private Driver driver;
+}
+
+@Entity
+@Table(name = "trip_requests")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TripRequest {
+    @Id
+    private String tripId;
+    private String tripType;
+    private String pickupLocation;
+    private String dropoffLocation;
+    private double distance;
+    private double estimatedFare;
+
+    @ManyToOne
+    @JoinColumn(name = "cid")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "did")
+    private Driver driver;
+}
+
+@Entity
+@Table(name = "payment_method")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PaymentMethod {
+    @Id
+    private String tid;
+    private String cardNumber;
+    private String cardType;
+    private LocalDate expiryDate;
+    private String billingAddress;
+}
+
+@Entity
+@Table(name = "completed_trips")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class CompletedTrip {
+    @Id
+    private String tripId;
+    private LocalDate pickupTime;
+    private LocalDate dropoffTime;
+    private double actualFare;
+    private double tip;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "trip_id")
+    private TripRequest tripRequest;
+}
+
+@Entity
+@Table(name = "rating")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Rating {
+    @Id
+    private String tripId;
+    private int driverRating;
+    private int customerRating;
+    private String driverFeedback;
+    private String customerFeedback;
+
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "trip_id")
+    private CompletedTrip completedTrip;
+}
