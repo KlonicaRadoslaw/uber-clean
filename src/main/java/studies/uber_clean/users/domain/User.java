@@ -1,7 +1,8 @@
 package studies.uber_clean.users.domain;
 
 import jakarta.persistence.*;
-
+//Tydzień 1, Wzorzec Factory 1
+// Na klasie User bazują klasy Customer oraz Driver
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
@@ -20,3 +21,4 @@ public abstract class User {
     }
 
 }
+//Koniec, Tydzień 1, Wzorzec Factory 1

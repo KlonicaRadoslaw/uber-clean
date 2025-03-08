@@ -2,7 +2,7 @@ package studies.uber_clean.users.domain;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-
+//Tydzień 1, Wzorzec Factory 1
 @Entity
 @DiscriminatorValue("DRIVER")
 public class Driver extends User {
@@ -17,3 +17,4 @@ public class Driver extends User {
     }
 
 }
+//Koniec, Tydzień 1, Wzorzec Factory 1

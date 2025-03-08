@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.NoArgsConstructor;
-
+//Tydzień 1, Wzorzec Factory 1
 @Entity
 @DiscriminatorValue("CUSTOMER")
 @NoArgsConstructor
@@ -18,3 +18,4 @@ public class Customer extends User {
         this.customerType = customerType;
     }
 }
+//Koniec, Tydzień 1, Wzorzec Factory 1
