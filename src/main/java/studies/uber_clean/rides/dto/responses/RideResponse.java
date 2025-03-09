@@ -1,4 +1,4 @@
-package studies.uber_clean.ride.dto.responses;
+package studies.uber_clean.rides.dto.responses;
 
 public class RideResponse {
     public Long rideId;

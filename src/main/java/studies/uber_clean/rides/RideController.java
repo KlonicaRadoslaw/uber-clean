@@ -1,11 +1,10 @@
-package studies.uber_clean.ride;
+package studies.uber_clean.rides;
 
 import org.springframework.web.bind.annotation.*;
-import studies.uber_clean.ride.domain.Ride;
-import studies.uber_clean.ride.domain.RideFacade;
-import studies.uber_clean.ride.dto.requests.RideRequest;
-import studies.uber_clean.ride.dto.responses.RideResponse;
-import studies.uber_clean.users.domain.User;
+import studies.uber_clean.rides.domain.Ride;
+import studies.uber_clean.rides.domain.RideFacade;
+import studies.uber_clean.rides.dto.requests.RideRequest;
+import studies.uber_clean.rides.dto.responses.RideResponse;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class RideController {
     }
 
     @GetMapping
-    public List<Ride> getAllUsers() {
+    public List<Ride> getAllRides() {
         return rideFacade.getAllRides();
     }
 

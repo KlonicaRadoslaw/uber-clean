@@ -1,26 +1,24 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-//Tydzień 1, Wzorzec Builder 1
+// Tydzień 1, Wzorzec Builder 1
 // Klasa RideOrder to klasa bazowa do budowania zamówienia przejazdu
 @Entity
 public class RideOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long orderId;
+    protected Long orderId;
 
-    private String customerEmail;
-    private String driverEmail;
-    private String pickupLocation;
-    private String destination;
-    private boolean isPremium;
-    private double price;
-    private LocalDateTime rideDate;
+    protected String customerEmail;
+    protected String driverEmail;
+    protected String pickupLocation;
+    protected String destination;
+    protected boolean isPremium;
+    protected double price;
+    protected LocalDateTime rideDate;
 
     public RideOrder(String customerEmail, String driverEmail, String pickupLocation, String destination, boolean isPremium, double price, LocalDateTime rideDate) {
         this.customerEmail = customerEmail;
@@ -38,4 +36,4 @@ public class RideOrder {
         return orderId;
     }
 }
-//Koniec, Tydzień 1, Wzorzec Builder 1
+// Koniec, Tydzień 1, Wzorzec Builder 1

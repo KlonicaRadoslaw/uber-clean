@@ -1,9 +1,10 @@
 package studies.uber_clean.users;
 
 import org.springframework.web.bind.annotation.*;
-import studies.uber_clean.users.domain.User;
 import studies.uber_clean.users.domain.UserFacade;
 import studies.uber_clean.users.dto.requests.CreateUserRequest;
+import studies.uber_clean.users.dto.responses.UserDetailedResponse;
+import studies.uber_clean.users.dto.responses.UserSimplifiedResponse;
 
 import java.util.List;
 
@@ -18,12 +19,17 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<UserSimplifiedResponse> getAllUsers() {
         return userFacade.getAllUsers();
     }
 
+    @GetMapping("/{userId}")
+    public UserDetailedResponse getUser(@PathVariable Long userId) {
+        return userFacade.getUser(userId);
+    }
+
     @PostMapping
-    public User addUser(
+    public UserDetailedResponse addUser(
             @RequestBody CreateUserRequest payload,
             @RequestParam String type) {
 

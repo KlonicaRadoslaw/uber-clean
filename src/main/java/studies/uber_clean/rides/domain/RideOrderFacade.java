@@ -1,4 +1,4 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
 import java.time.LocalDateTime;
 import java.util.List;

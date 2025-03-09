@@ -1,4 +1,4 @@
-package studies.uber_clean.ride.dto.requests;
+package studies.uber_clean.rides.dto.requests;
 
 public class RideRequest {
     public String pickupLocation;

@@ -1,9 +1,8 @@
-package studies.uber_clean.ride;
+package studies.uber_clean.rides;
 
 import org.springframework.web.bind.annotation.*;
-import studies.uber_clean.ride.domain.Ride;
-import studies.uber_clean.ride.domain.RideOrder;
-import studies.uber_clean.ride.domain.RideOrderFacade;
+import studies.uber_clean.rides.domain.RideOrder;
+import studies.uber_clean.rides.domain.RideOrderFacade;
 
 import java.time.LocalDateTime;
 import java.util.List;

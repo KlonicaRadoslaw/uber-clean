@@ -1,21 +1,18 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-//Tydzień 1, Wzorzec Prototype 1
+// Tydzień 1, Wzorzec Prototype 1
 // Klasa Ride może sklonować istniejący przejazd
 @Entity
 public class Ride implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long rideId;
+    protected Long rideId;
 
-    private String pickupLocation;
-    private String destination;
-    private boolean isPremium;
+    protected String pickupLocation;
+    protected String destination;
+    protected boolean isPremium;
 
     public Ride(String pickupLocation, String destination, boolean isPremium) {
         this.pickupLocation = pickupLocation;
@@ -24,7 +21,6 @@ public class Ride implements Cloneable {
     }
 
     public Ride() {}
-
 
     public Long getRideId() {
         return rideId;
@@ -42,20 +38,8 @@ public class Ride implements Cloneable {
         return isPremium;
     }
 
-    public void setRideId(Long rideId) {
-        this.rideId = rideId;
-    }
-
     public void setPickupLocation(String pickupLocation) {
         this.pickupLocation = pickupLocation;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public void setPremium(boolean premium) {
-        isPremium = premium;
     }
 
     @Override
@@ -67,4 +51,4 @@ public class Ride implements Cloneable {
         }
     }
 }
-//Koniec, Tydzień 1, Wzorzec Prototype 1
+// Koniec, Tydzień 1, Wzorzec Prototype 1

@@ -1,8 +1,8 @@
-package studies.uber_clean.ride;
+package studies.uber_clean.rides;
 
 import org.springframework.web.bind.annotation.*;
-import studies.uber_clean.ride.domain.RideOrder;
-import studies.uber_clean.ride.domain.RideSession;
+import studies.uber_clean.rides.domain.RideOrder;
+import studies.uber_clean.rides.domain.RideSession;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -33,6 +33,11 @@ public class RideSessionController {
     @GetMapping("/active")
     public Map<Long, RideOrder> getAllActiveRides() {
         return rideSession.getAllActiveRides();
+    }
+
+    @GetMapping("/active/{orderId}")
+    public RideOrder getActiveRide(@PathVariable Long orderId) {
+        return rideSession.getActiveRide(orderId);
     }
 
     @DeleteMapping("/remove/{orderId}")

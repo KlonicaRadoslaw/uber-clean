@@ -1,8 +1,8 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
 import java.time.LocalDateTime;
 
-//Tydzień 1, Wzorzec Builder 1
+// Tydzień 1, Wzorzec Builder 1
 // Klasa RideOrderBuilder może budować zamówienie przejazdu
 public class RideOrderBuilder {
     private String customerEmail;

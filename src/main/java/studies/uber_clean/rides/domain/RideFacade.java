@@ -1,15 +1,11 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
-import org.springframework.stereotype.Service;
-import studies.uber_clean.ride.domain.Ride;
-import studies.uber_clean.ride.dto.requests.RideRequest;
-import studies.uber_clean.ride.dto.responses.RideResponse;
-import studies.uber_clean.ride.domain.RideRepository;
-import studies.uber_clean.users.domain.User;
+import studies.uber_clean.rides.dto.requests.RideRequest;
+import studies.uber_clean.rides.dto.responses.RideResponse;
 
 import java.util.List;
 
-//Tydzień 4, Wzorzec Facade 2
+// Tydzień 4, Wzorzec Facade 2
 public class RideFacade {
     private final RideRepository rideRepository;
 
@@ -40,4 +36,4 @@ public class RideFacade {
         return rides;
     }
 }
-//Koniec, Tydzień 4, Wzorzec Facade 2
+// Koniec, Tydzień 4, Wzorzec Facade 2

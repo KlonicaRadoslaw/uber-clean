@@ -1,14 +1,14 @@
-package studies.uber_clean.ride.domain;
+package studies.uber_clean.rides.domain;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-//Tydzień 1, Wzorzec Singleton 1
+// Tydzień 1, Wzorzec Singleton 1
 // Klasa do śledzenia sesji przejazdów. Tylko jedna instancja do przechowywania wszytkich przejazdów w seji
 public class RideSession {
     private static RideSession instance;
-    private Map<Long, RideOrder> activeRides;
+    private final Map<Long, RideOrder> activeRides;
 
     private RideSession() {
         activeRides = new HashMap<>();
@@ -41,4 +41,4 @@ public class RideSession {
         return activeRides;
     }
 }
-//Koniec, Tydzień 1, Wzorzec Singleton 1
+// Koniec, Tydzień 1, Wzorzec Singleton 1

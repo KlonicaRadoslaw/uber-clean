@@ -1,9 +1,12 @@
 package studies.uber_clean.users.domain;
 
 import studies.uber_clean.users.dto.requests.CreateUserRequest;
+import studies.uber_clean.users.dto.responses.UserDetailedResponse;
+import studies.uber_clean.users.dto.responses.UserSimplifiedResponse;
 
 import java.util.List;
-//Tydzień 4, Wzorzec Facade 1
+
+// Tydzień 4, Wzorzec Facade 1
 public class UserFacade {
     private final UserRepository userRepository;
 
@@ -11,25 +14,29 @@ public class UserFacade {
         this.userRepository = userRepository;
     }
 
-    // TODO(Docelowo zwracac UserDetailedResponse lub UserSimplifiedResponse)
-    public User createUser(CreateUserRequest createUserRequest, String type) {
-        // TODO(Walidacja jakas tutaj i pewnie w klasie Userow)
+    public UserDetailedResponse createUser(CreateUserRequest createUserRequest, String type) {
         User user;
-        //Tydzień 1, Wzorzec Factory 1
-        //Wytwarzanie użytkowników za pomocą fabryki zależnie od typu
+
+        // Tydzień 1, Wzorzec Factory 1
+        // Wytwarzanie użytkowników za pomocą fabryki zależnie od typu
         switch (type.toLowerCase()) {
             case "customer" -> user = new Customer(createUserRequest.email, createUserRequest.password, CustomerType.STANDARD);
-            case "driver" -> user = new Driver(createUserRequest.email, createUserRequest.password);
+            case "driver" -> user = new Driver(createUserRequest.email, createUserRequest.password, createUserRequest.licenseId);
             default -> throw new IllegalArgumentException("Unknown user type: " + type);
         }
-        //Koniec, Tydzień 1, Wzorzec Factory 1
-        return userRepository.save(user);
+        // Koniec, Tydzień 1, Wzorzec Factory 1
+        return User.toDetailedResponse(userRepository.save(user));
     }
 
-    public List<User> getAllUsers() {
-        List<User> users = userRepository.findAll();
+    public List<UserSimplifiedResponse> getAllUsers() {
+        List<UserSimplifiedResponse> users = userRepository.findAll().stream().map(User::toSimplifiedResponse).toList();
         users.forEach(user -> System.out.println(user.email));
         return users;
     }
+
+    public UserDetailedResponse getUser(Long userId) {
+        return User.toDetailedResponse(userRepository.findById(userId).orElseThrow());
+    }
+
 }
-//Koniec, Tydzień 4, Wzorzec Facade 1
+// Koniec, Tydzień 4, Wzorzec Facade 1
