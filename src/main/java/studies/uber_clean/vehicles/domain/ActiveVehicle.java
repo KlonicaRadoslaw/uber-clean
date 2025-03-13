@@ -3,7 +3,7 @@ package studies.uber_clean.vehicles.domain;
 import java.util.HashMap;
 import java.util.Map;
 
-// Tydzień 1, Wzorzec Prototype 2
+// Tydzień 1, Wzorzec Sigleton 2
 // Klasa służąca do przechowywania informacji o aktywnych pojazdach (takie które są przypisane do kierowcy)
 public class ActiveVehicle {
     private static ActiveVehicle instance;
@@ -36,4 +36,4 @@ public class ActiveVehicle {
         activeVehicles.remove(id);
     }
 }
-// Koniec, Tydzień 1, Wzorzec Prototype
+// Koniec, Tydzień 1, Wzorzec Singleton
