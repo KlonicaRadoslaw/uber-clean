@@ -1,6 +1,7 @@
 package studies.uber_clean.vehicles.domain;
 
 import studies.uber_clean.vehicles.dto.requests.CreateVehicleRequest;
+import studies.uber_clean.vehicles.dto.responses.BikeDetailedResponse;
 
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class VehicleFacade {
         return vehicleRepository.save(car);
     }
 
-    public Vehicle addBike(CreateVehicleRequest createVehicleRequest) {
+    public BikeDetailedResponse addBike(CreateVehicleRequest createVehicleRequest) {
         Bike bike = new VehicleBuilder()
                 .setManufacturer(createVehicleRequest.manufacturer)
                 .setModel(createVehicleRequest.model)
                 .buildBike(createVehicleRequest.haveBasket);
 
-        return vehicleRepository.save(bike);
+        return Bike.toDetailedResponse(vehicleRepository.save(bike));
     }
 
     public Vehicle addScooter(CreateVehicleRequest createVehicleRequest) {
@@ -60,6 +61,19 @@ public class VehicleFacade {
 
     public List<Vehicle> getAllVehicles() {
         return vehicleRepository.findAll();
+    }
+
+    public BikeDetailedResponse cloneBike(Long vehicleId) {
+        Vehicle vehicleToClone = vehicleRepository.findById(vehicleId)
+                .orElseThrow(() -> new IllegalArgumentException("Vehicle not found"));
+        Bike clonedVehicle;
+
+        if (vehicleToClone instanceof Bike) {
+            clonedVehicle = ((Bike) vehicleToClone).clone();
+            vehicleRepository.save(clonedVehicle);
+        } else throw new IllegalArgumentException("Unknown vehicle type: " + vehicleToClone.getClass().getSimpleName());
+
+        return Bike.toDetailedResponse(clonedVehicle);
     }
 }
 // Koniec, Tydzień 4, Wzorzec Facade 2

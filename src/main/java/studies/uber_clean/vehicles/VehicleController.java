@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import studies.uber_clean.vehicles.domain.Vehicle;
 import studies.uber_clean.vehicles.domain.VehicleFacade;
 import studies.uber_clean.vehicles.dto.requests.CreateVehicleRequest;
+import studies.uber_clean.vehicles.dto.responses.BikeDetailedResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class VehicleController {
     }
 
     @PostMapping("/add-bike")
-    public Vehicle addBike(@RequestBody CreateVehicleRequest payload) {
+    public BikeDetailedResponse addBike(@RequestBody CreateVehicleRequest payload) {
         return vehicleFacade.addBike(payload);
     }
 
@@ -68,5 +69,10 @@ public class VehicleController {
     @GetMapping("/get-active-vehicles/{vehicleId}")
     public Vehicle getActiveVehicle(@PathVariable Long vehicleId) {
         return activeVehicleList.getActiveVehicle(vehicleId);
+    }
+
+    @PostMapping("/bikes/{bikeId}")
+    public BikeDetailedResponse cloneBikeOrScooter(@PathVariable Long bikeId) {
+        return vehicleFacade.cloneBike(bikeId);
     }
 }
