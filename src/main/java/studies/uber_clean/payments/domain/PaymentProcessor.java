@@ -5,4 +5,4 @@ package studies.uber_clean.payments.domain;
 public interface PaymentProcessor {
     boolean pay(String accountNumber, double amount);
 }
-// Koniec, Tydzień 1, Wzorzec Adapter 1
+// Koniec, Tydzień 2, Wzorzec Adapter 1

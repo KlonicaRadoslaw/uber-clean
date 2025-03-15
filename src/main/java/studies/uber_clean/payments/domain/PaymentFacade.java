@@ -10,5 +10,5 @@ public class PaymentFacade {
     public boolean processPayment(String accountNumber, double amount) {
         return paymentProcessor.pay(accountNumber, amount);
     }
-    // Koniec, Tydzień 1, Wzorzec Adapter 1
+    // Koniec, Tydzień 2, Wzorzec Adapter 1
 }

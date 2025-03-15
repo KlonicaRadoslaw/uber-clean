@@ -22,4 +22,4 @@ public abstract class Route {
 
     public abstract void displayRoute();
 }
-// Koniec, Tydzień 1, Wzorzec Composite 1
+// Koniec, Tydzień 2, Wzorzec Composite 1

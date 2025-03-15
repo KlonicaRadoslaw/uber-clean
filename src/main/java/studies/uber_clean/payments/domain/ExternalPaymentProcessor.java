@@ -8,4 +8,4 @@ public class ExternalPaymentProcessor {
         return true;
     }
 }
-// Koniec, Tydzień 1, Wzorzec Adapter 1
+// Koniec, Tydzień 2, Wzorzec Adapter 1

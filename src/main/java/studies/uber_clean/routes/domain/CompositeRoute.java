@@ -33,4 +33,4 @@ public class CompositeRoute extends Route {
         routes.forEach(Route::displayRoute);
     }
 }
-// Koniec, Tydzień 1, Wzorzec Composite 1
+// Koniec, Tydzień 2, Wzorzec Composite 1

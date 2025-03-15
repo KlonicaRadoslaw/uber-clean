@@ -14,4 +14,4 @@ public class PaymentAdapter implements PaymentProcessor {
         return externalPaymentProcessor.processPayment(accountNumber, amount);
     }
 }
-// Koniec, Tydzień 1, Wzorzec Adapter 1
+// Koniec, Tydzień 2, Wzorzec Adapter 1

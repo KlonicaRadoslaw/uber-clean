@@ -1,5 +1,7 @@
 package studies.uber_clean.routes.domain;
 
+import java.util.Optional;
+
 public class RouteFacade {
     private final SimpleRouteRepository simpleRouteRepository;
     private final CompositeRouteRepository compositeRouteRepository;
@@ -11,6 +13,7 @@ public class RouteFacade {
 
     public SimpleRoute addSimpleRoute(String startPoint, String endPoint) {
         SimpleRoute simpleRoute = new SimpleRoute(startPoint, endPoint);
+
         return simpleRouteRepository.save(simpleRoute);
     }
 
@@ -27,7 +30,18 @@ public class RouteFacade {
         return compositeRouteRepository.save(compositeRoute);
     }
 
-    public void displayRoute(RouteComponent route) {
-        route.displayRoute();
+    public void displayRoute(Route route) {
+        // Opakowujemy w dekorator i wywołujemy metodę displayRoute
+        Route decoratedRoute = new RouteWithLogging(route);
+        decoratedRoute.displayRoute(); // Wywołanie metody displayRoute na dekorowanym obiekcie
+    }
+
+    public void displaySimpleRouteWithLogging(SimpleRoute simpleRoute) {
+        SimpleRoute decoratedRoute = new SimpleRouteWithLogging(simpleRoute);
+        decoratedRoute.displayRoute(); // Wywołanie metody displayRoute na dekorowanym obiekcie
+    }
+
+    public Optional<SimpleRoute> getSimpleRouteById(Long routeId) {
+        return simpleRouteRepository.findById(routeId);
     }
 }
