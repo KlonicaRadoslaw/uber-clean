@@ -4,35 +4,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import studies.uber_clean.notifications.domain.EmailNotificationAdapter;
-import studies.uber_clean.notifications.domain.NotificationService;
-import studies.uber_clean.notifications.domain.SmsNotificationAdapter;
+import studies.uber_clean.notifications.domain.*;
 
 @RestController
-@RequestMapping("/notifications")
+@RequestMapping("/api/notifications")
 public class NotificationController {
 
-    private final SmsNotificationAdapter smsNotificationAdapter;
-    private final EmailNotificationAdapter emailNotificationAdapter;
+    private final NotificationFacade notificationFacade;
 
-    public NotificationController(SmsNotificationAdapter smsNotificationAdapter, EmailNotificationAdapter emailNotificationAdapter) {
-        this.smsNotificationAdapter = smsNotificationAdapter;
-        this.emailNotificationAdapter = emailNotificationAdapter;
+    public NotificationController(NotificationFacade notificationFacade) {
+        this.notificationFacade = notificationFacade;
     }
 
-    @PostMapping("/send")
-    public String sendNotification(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
-        NotificationService service;
+    @PostMapping("/payment")
+    public String sendPaymentNotification(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
+        return notificationFacade.sendPaymentNotification(type, recipient, message);
+    }
 
-        switch (type.toLowerCase()) {
-            case "sms" -> service = smsNotificationAdapter;
-            case "email" -> service = emailNotificationAdapter;
-            default -> {
-                return "Invalid notification type";
-            }
-        }
-
-        service.sendNotification(recipient, message);
-        return "Notification sent successfully";
+    @PostMapping("/promotion")
+    public String sendPromotionNotification(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
+        return notificationFacade.sendPromotionNotification(type, recipient, message);
     }
 }

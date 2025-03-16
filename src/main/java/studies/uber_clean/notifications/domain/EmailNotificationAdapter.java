@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 // Tydzień 2, Wzorzec Adapter 2
 // Adapter obsługujący zewnętrzny system powiadomien
 @Service
-public class EmailNotificationAdapter implements NotificationService {
+public class EmailNotificationAdapter implements NotificationSender {
     private final EmailProvider emailProvider;
 
     public EmailNotificationAdapter() {
@@ -13,7 +13,7 @@ public class EmailNotificationAdapter implements NotificationService {
     }
 
     @Override
-    public void sendNotification(String recipient, String message) {
+    public void send(String recipient, String message) {
         emailProvider.sendEmail(recipient, "Uber Notification", message);
     }
 }
