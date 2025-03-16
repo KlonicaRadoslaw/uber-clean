@@ -16,12 +16,14 @@ public abstract class User {
 
     protected String email;
     protected String password;
+    protected String phoneNumber;
 
     public User() {}
 
-    public User(String email, String password) {
+    public User(String email, String password, String phoneNumber) {
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 
     public static UserSimplifiedResponse toSimplifiedResponse(User user) {
@@ -37,7 +39,7 @@ public abstract class User {
             userType = "Customer";
         }
 
-        return new UserDetailedResponse(user.userId, user.email, userType);
+        return new UserDetailedResponse(user.userId, user.email, user.phoneNumber, userType);
     }
 
 }

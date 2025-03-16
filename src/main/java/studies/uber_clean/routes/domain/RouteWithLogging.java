@@ -1,6 +1,6 @@
 package studies.uber_clean.routes.domain;
 
-public class RouteWithLogging extends Route{
+public class RouteWithLogging extends Route {
     private final Route decoratedRoute;
 
     public RouteWithLogging(Route decoratedRoute) {

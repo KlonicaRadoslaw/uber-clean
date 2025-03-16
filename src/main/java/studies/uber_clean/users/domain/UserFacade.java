@@ -20,8 +20,8 @@ public class UserFacade {
         // Tydzień 1, Wzorzec Factory 1
         // Wytwarzanie użytkowników za pomocą fabryki zależnie od typu
         switch (type.toLowerCase()) {
-            case "customer" -> user = new Customer(createUserRequest.email, createUserRequest.password, CustomerType.STANDARD);
-            case "driver" -> user = new Driver(createUserRequest.email, createUserRequest.password, createUserRequest.licenseId);
+            case "customer" -> user = new Customer(createUserRequest.email, createUserRequest.password, createUserRequest.phoneNumber, CustomerType.STANDARD);
+            case "driver" -> user = new Driver(createUserRequest.email, createUserRequest.password, createUserRequest.phoneNumber, createUserRequest.licenseId);
             default -> throw new IllegalArgumentException("Unknown user type: " + type);
         }
         // Koniec, Tydzień 1, Wzorzec Factory 1

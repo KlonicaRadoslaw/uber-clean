@@ -1,7 +1,7 @@
 package studies.uber_clean.routes.domain;
 // Tydzień 2, Wzorzec Decorator 1
 // Podstawowy Route do składania CompositeRoute
-public class SimpleRouteWithLogging extends SimpleRoute{
+public class SimpleRouteWithLogging extends SimpleRoute {
     private final SimpleRoute decoratedSimpleRoute;
 
     public SimpleRouteWithLogging(SimpleRoute decoratedSimpleRoute) {

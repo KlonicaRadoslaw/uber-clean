@@ -6,5 +6,6 @@ import lombok.Getter;
 public class CreateUserRequest {
     public String email;
     public String password;
+    public String phoneNumber;
     public String licenseId;
 }

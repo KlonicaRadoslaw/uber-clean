@@ -17,8 +17,8 @@ public class Driver extends User {
         super();
     }
 
-    public Driver(String email, String password, String licenseId) {
-        super(email, password);
+    public Driver(String email, String password, String phoneNumber, String licenseId) {
+        super(email, password, phoneNumber);
         this.licenseId = licenseId;
     }
 

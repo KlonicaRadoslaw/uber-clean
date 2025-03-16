@@ -14,8 +14,8 @@ public class Customer extends User {
 
     public Customer() {}
 
-    public Customer(String email, String password, CustomerType customerType) {
-        super(email, password);
+    public Customer(String email, String password, String phoneNumber, CustomerType customerType) {
+        super(email, password, phoneNumber);
         this.customerType = customerType;
     }
 }
