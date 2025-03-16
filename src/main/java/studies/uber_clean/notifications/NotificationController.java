@@ -25,4 +25,9 @@ public class NotificationController {
     public String sendPromotionNotification(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
         return notificationFacade.sendPromotionNotification(type, recipient, message);
     }
+
+    @PostMapping("/promotion-with-logging")
+    public String sendPromotionNotificationWithLogging(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
+        return notificationFacade.sendPromotionNotificationWithLogging(type, recipient, message);
+    }
 }

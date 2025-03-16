@@ -29,6 +29,17 @@ public class NotificationFacade {
         return "Notification sent successfully";
     }
 
+    public String sendPromotionNotificationWithLogging(String type, String recipient, String message) {
+        NotificationSender sender = getSender(type);
+
+        // Opakowujemy w dekorator i wywołujemy metodę sendNotification
+        NotificationSender decoratedSender = new LoggingNotificationDecorator(sender);
+        Notification notification = new PromoNotification(decoratedSender);
+        notification.sendNotification(recipient, message); // Wywołanie metody sendNotification na dekorowanym obiekcie
+
+        return "Notification sent successfully";
+    }
+
     private NotificationSender getSender(String type) {
         switch (type.toLowerCase()) {
             case "sms" -> {
