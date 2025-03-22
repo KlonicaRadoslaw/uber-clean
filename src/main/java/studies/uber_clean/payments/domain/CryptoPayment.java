@@ -1,6 +1,7 @@
 package studies.uber_clean.payments.domain;
 
 // Tydzień 2, Wzorzec Bridge 1
+// Tydzień 4, Wzorzec Proxy 1
 // Implementuje płatność krypto walutą.
 // Reprezentuje jedną z możliwych metod płatności, która może być użyta przez dowolny typ transportu.
 public class CryptoPayment implements PaymentMethod {
@@ -10,3 +11,4 @@ public class CryptoPayment implements PaymentMethod {
     }
 }
 // Koniec, Tydzień 2, Wzorzec Bridge 1
+// Koniec, Tydzień 4, Wzorzec Proxy 1

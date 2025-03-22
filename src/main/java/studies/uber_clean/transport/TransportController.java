@@ -37,4 +37,22 @@ public class TransportController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // Tydzień 4, Wzorzec Proxy 1
+    /**
+     * Endpoint rezerwacji transportu i płatności.
+     * @param amount Kwota płatności.
+     * @param paymentType Typ płatności ("card" lub "cash").
+     * @return Komunikat o statusie transakcji.
+     */
+    @PostMapping("/book")
+    public String bookTransport(@RequestParam double amount, @RequestParam String paymentType) {
+        try {
+            transportFacade.bookTransportWithProxy(amount, paymentType); // Rezerwacja transportu
+            return "Rezerwacja transportu i płatność zakończone.";
+        } catch (IllegalArgumentException e) {
+            return "Błąd: " + e.getMessage(); // Obsługa błędu w przypadku niepoprawnej metody płatności
+        }
+    }
+    // Koniec, Tydzień 4, Wzorzec Proxy 1
 }
