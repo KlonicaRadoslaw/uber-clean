@@ -97,4 +97,9 @@ public class VehicleController {
         vehicleFacade.showCommandHistory();
     }
     // Koniec, Tydzień 5, Wzorzec Command 1
+
+    @GetMapping("/filter")
+    public List<Vehicle> filterVehicles(@RequestParam String query) {
+        return vehicleFacade.filterVehicles(query);
+    }
 }

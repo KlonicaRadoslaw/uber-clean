@@ -113,5 +113,13 @@ public class VehicleFacade {
         commandInvoker.showHistory();
     }
     // Koniec, Tydzień 5, Wzorzec Command 1
+
+    // Tydzień 5, Wzorzec Interpreter 1
+    public List<Vehicle> filterVehicles(String query) {
+        Expression expression = QueryInterpreter.parse(query);
+        List<Vehicle> allVehicles = vehicleRepository.findAll();
+        return expression.interpret(allVehicles);
+    }
+    // Koniec, Tydzień 5, Wzorzec Interpreter 1
 }
 // Koniec, Tydzień 4, Wzorzec Facade 2

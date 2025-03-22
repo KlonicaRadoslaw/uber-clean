@@ -32,5 +32,9 @@ public class Bike extends Vehicle implements Cloneable {
     public static BikeDetailedResponse toDetailedResponse(Bike bike) {
         return new BikeDetailedResponse(bike.getVehicleId(), bike.manufacturer, bike.model, bike.isAssigned(), bike.haveBasket);
     }
+
+    public boolean doesHaveBasket() {
+        return haveBasket;
+    }
 }
 // Koniec Tydzień 1, Wzorzec Prototype 1

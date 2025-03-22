@@ -22,5 +22,9 @@ public class Car extends Vehicle {
         this.seats = seats;
         this.vin = vin;
     }
+
+    public int getSeats() {
+        return seats;
+    }
 }
 // Koniec, Tydzień 1, Wzorzec Factory
