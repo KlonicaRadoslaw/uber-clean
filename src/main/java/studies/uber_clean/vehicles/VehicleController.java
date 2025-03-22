@@ -31,6 +31,11 @@ public class VehicleController {
         return vehicleFacade.addCar(payload);
     }
 
+    @PostMapping("/add-vehicle-fly-weight")
+    public Vehicle addVehicleWithFlyWeight(@RequestBody CreateVehicleRequest payload, String type) {
+        return vehicleFacade.addVehicleWithFlyWeight(payload, type);
+    }
+
     @PostMapping("/add-bike")
     public BikeDetailedResponse addBike(@RequestBody CreateVehicleRequest payload) {
         return vehicleFacade.addBike(payload);

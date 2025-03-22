@@ -28,6 +28,21 @@ public class VehicleFacade {
         return vehicleRepository.save(vehicle);
     }
 
+    // Tydzień 4, Wzorzec FlyWeight 1
+    public Vehicle addVehicleWithFlyWeight(CreateVehicleRequest createVehicleRequest, String type) {
+        Vehicle vehicle;
+
+        switch (type.toLowerCase()) {
+            case "car" -> vehicle = VehicleFlyweightFactory.getVehicle(createVehicleRequest.manufacturer, createVehicleRequest.model);
+            case "bike" -> vehicle = new Bike(createVehicleRequest.manufacturer, createVehicleRequest.model, createVehicleRequest.haveBasket);
+            case "scooter" -> vehicle = new Scooter(createVehicleRequest.manufacturer, createVehicleRequest.model, createVehicleRequest.maxSpeed, createVehicleRequest.maxRangeOnSingleCharge);
+            default -> throw new IllegalArgumentException("Unknown vehicle type: " + type);
+        }
+
+        return vehicleRepository.save(vehicle);
+    }
+    // Koniec, Tydzień 4, Wzorzec FlyWeight 1
+
     public Vehicle addCar(CreateVehicleRequest createVehicleRequest) {
         Car car = new VehicleBuilder()
                 .setManufacturer(createVehicleRequest.manufacturer)
