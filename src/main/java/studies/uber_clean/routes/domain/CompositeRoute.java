@@ -42,5 +42,9 @@ public class CompositeRoute extends Route {
         return new CompositeRouteIterator(routes);
     }
     // Koniec, Tydzień 5, Wzorzec Iterator 1
+
+    public CompositeRouteIterator createIteratorMemento() {
+        return new CompositeRouteIterator(routes);
+    }
 }
 // Koniec, Tydzień 2, Wzorzec Composite 1

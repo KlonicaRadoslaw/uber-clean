@@ -10,4 +10,8 @@ public class RouteConfiguration {
     public RouteFacade routeFacade(SimpleRouteRepository simpleRouteRepository, CompositeRouteRepository compositeRouteRepository) {
         return new RouteFacade(simpleRouteRepository, compositeRouteRepository);
     }
+    @Bean
+    public RouteMediator routeMediator(RouteFacade routeFacade) {
+        return new RouteMediator(routeFacade);
+    }
 }
