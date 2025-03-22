@@ -44,4 +44,17 @@ public class RouteFacade {
     public Optional<SimpleRoute> getSimpleRouteById(Long routeId) {
         return simpleRouteRepository.findById(routeId);
     }
+
+    // Tydzień 5, Wzorzec Iterator 1
+    public void displayAllRoutesInComposite(CompositeRoute compositeRoute) {
+        RouteIterator iterator = compositeRoute.createIterator();
+        while (iterator.hasNext()) {
+            iterator.next().displayRoute();
+        }
+    }
+
+    public Optional<CompositeRoute> getCompositeRouteById(Long id) {
+        return compositeRouteRepository.findById(id);
+    }
+    // Koniec, Tydzień 5, Wzorzec Iterator 1
 }

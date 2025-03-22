@@ -32,5 +32,15 @@ public class CompositeRoute extends Route {
         System.out.println("Composite route consisting of:");
         routes.forEach(Route::displayRoute);
     }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
+
+    // Tydzień 5, Wzorzec Iterator 1
+    public RouteIterator createIterator() {
+        return new CompositeRouteIterator(routes);
+    }
+    // Koniec, Tydzień 5, Wzorzec Iterator 1
 }
 // Koniec, Tydzień 2, Wzorzec Composite 1
