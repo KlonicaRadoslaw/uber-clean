@@ -8,6 +8,9 @@ import java.util.List;
 // Tydzień 4, Wzorzec Facade 3
 public class VehicleFacade {
     private final VehicleRepository vehicleRepository;
+    // Tydzień 5, Wzorzec Command 1
+    private final CommandInvoker commandInvoker = new CommandInvoker();
+    // Koniec, Tydzień 5, Wzorzec Command 1
 
     public VehicleFacade(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
@@ -90,5 +93,25 @@ public class VehicleFacade {
 
         return Bike.toDetailedResponse(clonedVehicle);
     }
+
+    // Tydzień 5, Wzorzec Command 1
+    public void assignVehicle(Long vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).orElseThrow();
+        Command assignCommand = new AssignVehicleCommand(vehicle);
+        commandInvoker.executeCommand(assignCommand);
+        vehicleRepository.save(vehicle);
+    }
+
+    public void unassignVehicle(Long vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).orElseThrow();
+        Command unassignCommand = new UnassignVehicleCommand(vehicle);
+        commandInvoker.executeCommand(unassignCommand);
+        vehicleRepository.save(vehicle);
+    }
+
+    public void showCommandHistory() {
+        commandInvoker.showHistory();
+    }
+    // Koniec, Tydzień 5, Wzorzec Command 1
 }
 // Koniec, Tydzień 4, Wzorzec Facade 2

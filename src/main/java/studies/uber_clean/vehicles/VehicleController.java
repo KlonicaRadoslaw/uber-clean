@@ -80,4 +80,21 @@ public class VehicleController {
     public BikeDetailedResponse cloneBikeOrScooter(@PathVariable Long bikeId) {
         return vehicleFacade.cloneBike(bikeId);
     }
+
+    // Tydzień 5, Wzorzec Command 1
+    @PostMapping("/{vehicleId}/assign")
+    public void assignVehicle(@PathVariable Long vehicleId) {
+        vehicleFacade.assignVehicle(vehicleId);
+    }
+
+    @PostMapping("/{vehicleId}/unassign")
+    public void unassignVehicle(@PathVariable Long vehicleId) {
+        vehicleFacade.unassignVehicle(vehicleId);
+    }
+
+    @GetMapping("/history")
+    public void getCommandHistory() {
+        vehicleFacade.showCommandHistory();
+    }
+    // Koniec, Tydzień 5, Wzorzec Command 1
 }
