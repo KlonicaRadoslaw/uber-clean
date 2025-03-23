@@ -14,8 +14,11 @@ public class NotificationFacade {
     public String sendPaymentNotification(String type, String recipient, String message) {
         NotificationSender sender = getSender(type);
 
+        // Tydzień 4, Wzorzec Flyweight 2
+        NotificationMessage notificationMessage = NotificationMessageFactory.getMessage("Payment", message);
         Notification notification = new PaymentNotification(sender);
-        notification.sendNotification(recipient, message);
+        notification.sendNotification(recipient, notificationMessage.getFormattedMessage());
+        // Koniec, Tydzień 4, Wzorzec Flyweight 2
 
         return "Notification sent successfully";
     }
@@ -23,8 +26,11 @@ public class NotificationFacade {
     public String sendPromotionNotification(String type, String recipient, String message) {
         NotificationSender sender = getSender(type);
 
+        // Tydzień 4, Wzorzec Flyweight 2
+        NotificationMessage notificationMessage = NotificationMessageFactory.getMessage("Promotion", message);
         Notification notification = new PromoNotification(sender);
-        notification.sendNotification(recipient, message);
+        notification.sendNotification(recipient, notificationMessage.getFormattedMessage());
+        // Koniec, Tydzień 4, Wzorzec Flyweight 2
 
         return "Notification sent successfully";
     }
@@ -39,6 +45,32 @@ public class NotificationFacade {
 
         return "Notification sent successfully";
     }
+
+    // Tydzień 4, Wzorzec Proxy 2
+    public String sendPaymentNotificationWithProxyLimiter(String type, String recipient, String message) {
+        NotificationSender sender = getSender(type);
+
+        // Używamy Proxy do ograniczenia wysyłki
+        NotificationSender proxySender = new NotificationRateLimiterProxy(sender);
+
+        Notification notification = new PaymentNotification(proxySender);
+        notification.sendNotification(recipient, message);
+
+        return "Notification with proxy limiter sent successfully";
+    }
+
+    public String sendPromotionNotificationWithProxyLimiter(String type, String recipient, String message) {
+        NotificationSender sender = getSender(type);
+
+        // Używamy Proxy do ograniczenia wysyłki
+        NotificationSender proxySender = new NotificationRateLimiterProxy(sender);
+
+        Notification notification = new PromoNotification(proxySender);
+        notification.sendNotification(recipient, message);
+
+        return "Notification with proxy limiter sent successfully";
+    }
+    // Koniec, Tydzień 4, Wzorzec Proxy 2
 
     private NotificationSender getSender(String type) {
         switch (type.toLowerCase()) {

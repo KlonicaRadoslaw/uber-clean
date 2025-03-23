@@ -30,4 +30,16 @@ public class NotificationController {
     public String sendPromotionNotificationWithLogging(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
         return notificationFacade.sendPromotionNotificationWithLogging(type, recipient, message);
     }
+
+    // Tydzień 4, Wzorzec Proxy 2
+    @PostMapping("/payment-with-proxy-limiter")
+    public String sendPaymentNotificationWithProxyLimiter(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
+        return notificationFacade.sendPaymentNotificationWithProxyLimiter(type, recipient, message);
+    }
+
+    @PostMapping("/promotion-with-proxy-limiter")
+    public String sendPromotionNotificationWithProxyLimiter(@RequestParam String type, @RequestParam String recipient, @RequestParam String message) {
+        return notificationFacade.sendPromotionNotificationWithProxyLimiter(type, recipient, message);
+    }
+    // Koniec, Tydzień 4, Wzorzec Proxy 2
 }

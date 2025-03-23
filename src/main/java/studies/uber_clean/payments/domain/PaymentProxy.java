@@ -1,8 +1,8 @@
 package studies.uber_clean.payments.domain;
 
 // Tydzień 4, Wzorzec Proxy 1
-//Klasa Proxy, która kontroluje dostęp do rzeczywistej implementacji płatności.
-//Dodaje logowanie przed i po dokonaniu transakcji.
+// Klasa Proxy, która kontroluje dostęp do rzeczywistej implementacji płatności.
+// Dodaje logowanie przed i po dokonaniu transakcji.
 public class PaymentProxy implements PaymentMethod {
     private final PaymentMethod realPaymentMethod;
 
