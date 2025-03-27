@@ -6,7 +6,6 @@ import studies.uber_clean.users.dto.responses.UserSimplifiedResponse;
 
 import java.util.List;
 
-// Tydzień 4, Wzorzec Facade 1
 public class UserFacade {
     private final UserRepository userRepository;
 
@@ -39,4 +38,3 @@ public class UserFacade {
     }
 
 }
-// Koniec, Tydzień 4, Wzorzec Facade 1

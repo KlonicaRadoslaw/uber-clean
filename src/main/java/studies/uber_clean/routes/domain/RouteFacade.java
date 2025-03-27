@@ -2,6 +2,7 @@ package studies.uber_clean.routes.domain;
 
 import java.util.Optional;
 
+// Tydzień 4, Wzorzec Facade 1
 public class RouteFacade {
     private final SimpleRouteRepository simpleRouteRepository;
     private final CompositeRouteRepository compositeRouteRepository;
@@ -58,3 +59,4 @@ public class RouteFacade {
     }
     // Koniec, Tydzień 5, Wzorzec Iterator 1
 }
+// Koniec, Tydzień 4, Wzorzec Facade 1

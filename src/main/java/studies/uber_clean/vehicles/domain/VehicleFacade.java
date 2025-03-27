@@ -5,7 +5,7 @@ import studies.uber_clean.vehicles.dto.responses.BikeDetailedResponse;
 
 import java.util.List;
 
-// Tydzień 4, Wzorzec Facade 3
+// Tydzień 4, Wzorzec Facade 2
 public class VehicleFacade {
     private final VehicleRepository vehicleRepository;
     // Tydzień 5, Wzorzec Command 1
