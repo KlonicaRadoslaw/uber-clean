@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import studies.uber_clean.discounts.domain.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/discounts")
@@ -47,4 +49,19 @@ public class DiscountController {
         return "Final price after interpreting rule '" + rule + "': " + finalPrice + " PLN";
     }
     // Koniec, Tydzień 5, Wzorzec Interpreter 2
+
+    // Tydzien 5, Wzorzec Iterator 2
+    @GetMapping("/list")
+    public List<String> listDiscounts() {
+        List<String> discountDescriptions = new ArrayList<>();
+        DiscountIterator iterator = promoBundle.createIterator();
+
+        while (iterator.hasNext()) {
+            SingleDiscount discount = (SingleDiscount) iterator.next();
+            String type = discount.isPercentage() ? "%" : "PLN";
+            discountDescriptions.add(discount.getName() + ": " + discount.getDiscountAmount() + type);
+        }
+        return discountDescriptions;
+    }
+    // Koniec, Tydzien 5, Wzorzec Iterator 2
 }

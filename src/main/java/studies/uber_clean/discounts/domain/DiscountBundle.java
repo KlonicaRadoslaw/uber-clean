@@ -22,6 +22,12 @@ public class DiscountBundle implements DiscountComponent {
         discounts.remove(discount);
     }
 
+    // Tydzien 5, Wzorzec Iterator 2
+    public DiscountIterator createIterator() {
+        return new DiscountBundleIterator(discounts);
+    }
+    // Koniec, Tydzien 5, Wzorzec Iterator 2
+
     @Override
     public BigDecimal applyDiscount(BigDecimal price) {
         BigDecimal finalPrice = price;
@@ -29,6 +35,10 @@ public class DiscountBundle implements DiscountComponent {
             finalPrice = discount.applyDiscount(finalPrice);
         }
         return finalPrice;
+    }
+
+    public String getBundleName() {
+        return bundleName;
     }
 }
 // Koniec, Tydzień 2, Wzorzec Composite 2

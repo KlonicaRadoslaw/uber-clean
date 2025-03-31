@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 // Tydzień 2, Wzorzec Composite 2
 // Podstawowy SingleDiscount do składania DiscountBundle
 public class SingleDiscount implements DiscountComponent {
-    private String name;
-    private BigDecimal discountAmount;
-    private boolean isPercentage;
+    private final String name;
+    private final BigDecimal discountAmount;
+    private final boolean isPercentage;
 
     public SingleDiscount(String name, BigDecimal discountAmount, boolean isPercentage) {
         this.name = name;
@@ -22,6 +22,18 @@ public class SingleDiscount implements DiscountComponent {
         } else {
             return price.subtract(discountAmount).max(BigDecimal.ZERO);
         }
+    }
+
+    public boolean isPercentage() {
+        return isPercentage;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getDiscountAmount() {
+        return discountAmount;
     }
 }
 // Koniec, Tydzień 2, Wzorzec Composite 2
