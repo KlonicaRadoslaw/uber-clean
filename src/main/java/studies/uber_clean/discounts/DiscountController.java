@@ -12,6 +12,7 @@ import java.util.List;
 public class DiscountController {
     private final DiscountBundle promoBundle = new DiscountBundle("Uber Promotions");
     private final DiscountInvoker invoker = new DiscountInvoker();
+    private final DiscountMediatorImpl discountMediator = new DiscountMediatorImpl(promoBundle);
 
     // Tydzień 5, Wzorzec Command 1
     @PostMapping("/add")
@@ -27,6 +28,19 @@ public class DiscountController {
         BigDecimal finalPrice = promoBundle.applyDiscount(BigDecimal.valueOf(price));
         return "Final price after discounts: " + finalPrice + " PLN";
     }
+
+    // Tydzien 5, Wzorzec Mediator 2
+    @PostMapping("/apply-to-user")
+    public String applyDiscountToUser(@RequestParam String userId, @RequestParam double price) {
+        discountMediator.applyDiscountToUser(userId, BigDecimal.valueOf(price));
+        return "Discount applied for user: " + userId;
+    }
+
+    @GetMapping("/user-balance")
+    public String getUserBalance(@RequestParam String userId) {
+        return "User " + userId + " final price: " + discountMediator.getUserBalance(userId);
+    }
+    // Koniec, Tydzien 5, Wzorzec Mediator 2
 
     @PostMapping("/undo")
     public String undoLastDiscount() {
