@@ -14,12 +14,13 @@ public class DiscountController {
     private final DiscountInvoker invoker = new DiscountInvoker();
     private final DiscountMediatorImpl discountMediator = new DiscountMediatorImpl(promoBundle);
 
-    // Tydzień 5, Wzorzec Command 1
+
+    // Tydzień 5, Wzorzec Command 2
     @PostMapping("/add")
     public String addDiscount(@RequestParam String name, @RequestParam double amount, @RequestParam boolean isPercentage) {
         SingleDiscount discount = new SingleDiscount(name, BigDecimal.valueOf(amount), isPercentage);
         AddDiscountCommand command = new AddDiscountCommand(promoBundle, discount);
-        invoker.executeCommand(command);
+        invoker.executeCommand(command, promoBundle);
         return "Added discount: " + name;
     }
 
@@ -29,7 +30,8 @@ public class DiscountController {
         return "Final price after discounts: " + finalPrice + " PLN";
     }
 
-    // Tydzien 5, Wzorzec Mediator 2
+
+    // Tydzień 5, Wzorzec Mediator 2
     @PostMapping("/apply-to-user")
     public String applyDiscountToUser(@RequestParam String userId, @RequestParam double price) {
         discountMediator.applyDiscountToUser(userId, BigDecimal.valueOf(price));
@@ -40,7 +42,8 @@ public class DiscountController {
     public String getUserBalance(@RequestParam String userId) {
         return "User " + userId + " final price: " + discountMediator.getUserBalance(userId);
     }
-    // Koniec, Tydzien 5, Wzorzec Mediator 2
+    // Koniec, Tydzień 5, Wzorzec Mediator 2
+
 
     @PostMapping("/undo")
     public String undoLastDiscount() {
@@ -55,6 +58,7 @@ public class DiscountController {
     }
     // Koniec, Tydzień 5, Wzorzec Command 2
 
+
     // Tydzień 5, Wzorzec Interpreter 2
     @PostMapping("/interpret")
     public String interpretDiscount(@RequestParam String rule, @RequestParam double price) {
@@ -64,7 +68,8 @@ public class DiscountController {
     }
     // Koniec, Tydzień 5, Wzorzec Interpreter 2
 
-    // Tydzien 5, Wzorzec Iterator 2
+
+    // Tydzień 5, Wzorzec Iterator 2
     @GetMapping("/list")
     public List<String> listDiscounts() {
         List<String> discountDescriptions = new ArrayList<>();
@@ -77,5 +82,22 @@ public class DiscountController {
         }
         return discountDescriptions;
     }
-    // Koniec, Tydzien 5, Wzorzec Iterator 2
+    // Koniec, Tydzień 5, Wzorzec Iterator 2
+
+
+    // Tydzień 5, Wzorzec Memento 2
+    @PostMapping("/save-state")
+    public String saveDiscountState() {
+        DiscountBundleMemento memento = promoBundle.saveState();
+        invoker.saveMemento(memento);
+        return "Current discount state saved!";
+    }
+
+    @PostMapping("/undo-state")
+    public String undoDiscountState() {
+        invoker.undoLastState(promoBundle);
+        return "Last discount state undone!";
+    }
+    // Koniec, Tydzień 5, Wzorzec Memento 2
+
 }

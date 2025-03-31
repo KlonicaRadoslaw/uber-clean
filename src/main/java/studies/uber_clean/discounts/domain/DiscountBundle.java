@@ -28,6 +28,18 @@ public class DiscountBundle implements DiscountComponent {
     }
     // Koniec, Tydzien 5, Wzorzec Iterator 2
 
+
+    // Tydzien 5, Wzorzec Memento 2
+    public DiscountBundleMemento saveState() {
+        return new DiscountBundleMemento(new ArrayList<>(discounts));
+    }
+    // Koniec, Tydzien 5, Wzorzec Memento 2
+
+    public void restoreState(DiscountBundleMemento memento) {
+        this.discounts.clear();
+        this.discounts.addAll(memento.getDiscounts());
+    }
+
     @Override
     public BigDecimal applyDiscount(BigDecimal price) {
         BigDecimal finalPrice = price;
