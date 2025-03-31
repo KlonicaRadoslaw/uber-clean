@@ -7,8 +7,8 @@ import java.util.List;
 // Tydzień 2, Wzorzec Composite 2
 // DiscountBundle składa się z wielu SingleDiscount
 public class DiscountBundle implements DiscountComponent {
-    private String bundleName;
-    private List<SingleDiscount> discounts = new ArrayList<>();
+    private final String bundleName;
+    private final List<SingleDiscount> discounts = new ArrayList<>();
 
     public DiscountBundle(String bundleName) {
         this.bundleName = bundleName;
@@ -16,6 +16,10 @@ public class DiscountBundle implements DiscountComponent {
 
     public void addDiscount(SingleDiscount discount) {
         discounts.add(discount);
+    }
+
+    public void removeDiscount(SingleDiscount discount) {
+        discounts.remove(discount);
     }
 
     @Override
