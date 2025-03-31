@@ -1,10 +1,7 @@
 package studies.uber_clean.discounts;
 
 import org.springframework.web.bind.annotation.*;
-import studies.uber_clean.discounts.domain.AddDiscountCommand;
-import studies.uber_clean.discounts.domain.DiscountBundle;
-import studies.uber_clean.discounts.domain.DiscountInvoker;
-import studies.uber_clean.discounts.domain.SingleDiscount;
+import studies.uber_clean.discounts.domain.*;
 
 import java.math.BigDecimal;
 
@@ -40,5 +37,14 @@ public class DiscountController {
         invoker.undoAllCommands();
         return "All discounts reset!";
     }
-    // Koniec, Tydzień 5, Wzorzec Command 1
+    // Koniec, Tydzień 5, Wzorzec Command 2
+
+    // Tydzień 5, Wzorzec Interpreter 2
+    @PostMapping("/interpret")
+    public String interpretDiscount(@RequestParam String rule, @RequestParam double price) {
+        DiscountExpression expression = DiscountInterpreter.parse(rule);
+        BigDecimal finalPrice = expression.interpret(BigDecimal.valueOf(price));
+        return "Final price after interpreting rule '" + rule + "': " + finalPrice + " PLN";
+    }
+    // Koniec, Tydzień 5, Wzorzec Interpreter 2
 }

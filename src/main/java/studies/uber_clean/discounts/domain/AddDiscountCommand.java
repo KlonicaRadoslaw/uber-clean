@@ -1,6 +1,6 @@
 package studies.uber_clean.discounts.domain;
 
-// Tydzień 5, Wzorzec Command 1
+// Tydzień 5, Wzorzec Command 2
 public class AddDiscountCommand implements DiscountCommand {
     private final DiscountBundle discountBundle;
     private final SingleDiscount discount;
@@ -20,4 +20,4 @@ public class AddDiscountCommand implements DiscountCommand {
         discountBundle.removeDiscount(discount);
     }
 }
-// Koniec, Tydzień 5, Wzorzec Command 1
+// Koniec, Tydzień 5, Wzorzec Command 2

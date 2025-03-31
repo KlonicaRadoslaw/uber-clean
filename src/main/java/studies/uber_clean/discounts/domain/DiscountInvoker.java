@@ -2,7 +2,7 @@ package studies.uber_clean.discounts.domain;
 
 import java.util.Stack;
 
-// Tydzień 5, Wzorzec Command 1
+// Tydzień 5, Wzorzec Command 2
 public class DiscountInvoker {
     private final Stack<DiscountCommand> history = new Stack<>();
 
@@ -24,4 +24,4 @@ public class DiscountInvoker {
         }
     }
 }
-// Koniec, Tydzień 5, Wzorzec Command 1
+// Koniec, Tydzień 5, Wzorzec Command 2
