@@ -14,5 +14,5 @@ public class DiscountBundleMemento {
         return discounts;
     }
 }
-// Koniec, Tydzień 5, Wzorzec Memento 1
+// Koniec, Tydzień 5, Wzorzec Memento 2
 

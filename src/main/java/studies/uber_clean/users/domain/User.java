@@ -42,5 +42,12 @@ public abstract class User {
         return new UserDetailedResponse(user.userId, user.email, user.phoneNumber, userType);
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
 }
 // Koniec, Tydzień 1, Wzorzec Factory 1
