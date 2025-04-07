@@ -14,7 +14,7 @@ public class RideFacade {
     }
 
     public RideResponse createRide(RideRequest request) {
-        Ride ride = new Ride(request.pickupLocation, request.destination, request.isPremium);
+        Ride ride = new Ride(request.pickupLocation, request.destination, request.tripTimeInSeconds, request.cost, request.isPremium);
         Ride savedRide = rideRepository.save(ride);
         return new RideResponse(savedRide.getRideId(), savedRide.getPickupLocation(), savedRide.getDestination(), savedRide.isPremium());
     }
@@ -35,5 +35,7 @@ public class RideFacade {
         rides.forEach(ride -> System.out.println(ride.getRideId()));
         return rides;
     }
+
+
 }
 // Koniec, Tydzień 4, Wzorzec Facade 2

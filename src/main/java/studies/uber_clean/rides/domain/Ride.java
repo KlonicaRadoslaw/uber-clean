@@ -1,6 +1,7 @@
 package studies.uber_clean.rides.domain;
 
 import jakarta.persistence.*;
+import studies.uber_clean.rideAnalytics.domain.RideVisitor;
 
 // Tydzień 1, Wzorzec Prototype 1
 // Klasa Ride może sklonować istniejący przejazd
@@ -12,11 +13,15 @@ public class Ride implements Cloneable {
 
     protected String pickupLocation;
     protected String destination;
+    protected Integer tripTimeInSeconds;
+    protected String cost;
     protected boolean isPremium;
 
-    public Ride(String pickupLocation, String destination, boolean isPremium) {
+    public Ride(String pickupLocation, String destination, Integer tripTimeInSeconds, String cost, boolean isPremium) {
         this.pickupLocation = pickupLocation;
         this.destination = destination;
+        this.tripTimeInSeconds = tripTimeInSeconds;
+        this.cost = cost;
         this.isPremium = isPremium;
     }
 
@@ -32,6 +37,14 @@ public class Ride implements Cloneable {
 
     public String getDestination() {
         return destination;
+    }
+
+    public Integer getTripTimeInSeconds() {
+        return tripTimeInSeconds;
+    }
+
+    public String getCost() {
+        return cost;
     }
 
     public boolean isPremium() {
@@ -50,5 +63,12 @@ public class Ride implements Cloneable {
             throw new RuntimeException("Clone not supported", e);
         }
     }
+
+    // Tydzień 6, Wzorzec Visitor 2
+    public String accept(RideVisitor visitor) {
+        return visitor.visit(this);
+    }
+    // Koniec, Tydzień 6, Wzorzec Visitor 2
+
 }
 // Koniec, Tydzień 1, Wzorzec Prototype 1
