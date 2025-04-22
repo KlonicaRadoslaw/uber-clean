@@ -1,10 +1,14 @@
 package studies.uber_clean.loyaltyProgram.domain;
 
+// Tydzień 7, Wzorzec Single responsibility 1
 // Tydzień 6, Wzorzec State 1
 /**
  * Klasa reprezentująca poziom Silver.
  */
+
 public class SilverLevel extends LoyaltyLevel {
+
+    private final SilverToGoldPromotionRule promotionRule = new SilverToGoldPromotionRule();
 
     @Override
     public String getLevelName() {
@@ -13,7 +17,7 @@ public class SilverLevel extends LoyaltyLevel {
 
     @Override
     public void checkForUpgrade(LoyaltyAccount account) {
-        if (account.getPoints() >= 1000) {
+        if (promotionRule.shouldPromote(account)) {
             account.upgradeLevel();
         }
     }
@@ -24,3 +28,4 @@ public class SilverLevel extends LoyaltyLevel {
     }
 }
 // Koniec, Tydzień 6, Wzorzec State 1
+// Koniec, Tydzień 7, Wzorzec Single responsibility 1

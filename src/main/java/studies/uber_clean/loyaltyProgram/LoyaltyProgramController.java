@@ -7,14 +7,27 @@ import studies.uber_clean.loyaltyProgram.domain.PointsStrategy;
 import studies.uber_clean.loyaltyProgram.domain.StandardPointsStrategy;
 import studies.uber_clean.users.domain.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/loyalty")
 public class LoyaltyProgramController {
     private final LoyaltyProgramFacade loyaltyFacade;
+    private final Map<String, PointsStrategy> strategyRegistry = new HashMap<>();
 
     public LoyaltyProgramController(LoyaltyProgramFacade loyaltyFacade) {
         this.loyaltyFacade = loyaltyFacade;
     }
+
+    // Tydzień 7, Wzorzec Open Closed 1
+    private void initializeStrategies() {
+        strategyRegistry.put("standard", new StandardPointsStrategy());
+        // Tutaj można łatwo dodać nowe strategie:
+        // strategyRegistry.put("holiday", new HolidayPointsStrategy());
+        // strategyRegistry.put("vip", new VIPPointsStrategy());
+    }
+    // Koniec, Tydzień 7, Wzorzec Open Closed 1
 
     /**
      * Rejestracja użytkownika w programie lojalnościowym.

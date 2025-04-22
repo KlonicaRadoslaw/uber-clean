@@ -1,12 +1,16 @@
 package studies.uber_clean.loyaltyProgram.domain;
 
 // Tydzień 6, Wzorzec Visitor 1
+// Tydzień 7, Wzorzec Single responsibility 1
 
 import studies.uber_clean.users.domain.Customer;
 import studies.uber_clean.users.domain.Driver;
 
 /**
  * Implementacja Visitor dla raportowania nagród lojalnościowych
+ */
+/**
+ * Tylko tworzy raport lojalnościowy.
  */
 class LoyaltyReportVisitor implements LoyaltyVisitor {
     private String report;
@@ -30,3 +34,4 @@ class LoyaltyReportVisitor implements LoyaltyVisitor {
     }
 }
 // Koniec, Tydzień 6, Wzorzec Visitor 1
+// Koniec, Tydzień 7, Wzorzec Single responsibility 1
