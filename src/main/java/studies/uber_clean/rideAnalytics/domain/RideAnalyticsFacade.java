@@ -11,19 +11,27 @@ public class RideAnalyticsFacade {
     // Tydzień 6, Wzorzec Strategy 2
     // Tydzień 6, Wzorzec Template 2
     // Tydzień 6, Wzorzec Visitor 2
-    private final RideDataPublisher publisher = new RideDataPublisher();
+    // Tydzień 7, Wzorzec Single responsibility 2
+    private final RideObserverRegistry observerRegistry = new RideObserverRegistry();
+    private final RidePublisher ridePublisher = new RidePublisher(observerRegistry);
     private final RideAnalysisContext stateContext = new RideAnalysisContext();
+    private final RideAnalysisStrategyRegistry rideAnalysisStrategyRegistry = new RideAnalysisStrategyRegistry();
     private final RideRepository rideRepository;
 
     public RideAnalyticsFacade(RideRepository rideRepository) {
         this.rideRepository = rideRepository;
-        publisher.attach(new AverageRideTimeObserver());
-        publisher.attach(new PopularDestinationsObserver());
+        observerRegistry.register(new AverageRideTimeObserver());
+        observerRegistry.register(new PopularDestinationsObserver());
+
+        // Tydzień 7, Wzorzec Open Closed 2
+        rideAnalysisStrategyRegistry.register("time", new TimeAnalysisStrategy());
+        rideAnalysisStrategyRegistry.register("cost", new CostAnalysisStrategy());
     }
 
     public void processNewRide(Ride ride) {
-        publisher.publish(ride);
+        ridePublisher.publish(ride);
         // Koniec, Tydzień 6, Wzorzec Observer
+        // Koniec, Tydzień 7, Wzorzec Single responsibility 2
 
         stateContext.setState(new RawDataState());
         stateContext.handle(ride);
@@ -33,16 +41,13 @@ public class RideAnalyticsFacade {
     }
 
     public String runStrategy(String strategyName, Long rideId) {
-        AnalysisStrategy strategy;
-        switch (strategyName.toLowerCase()) {
-            case "time" -> strategy = new TimeAnalysisStrategy();
-            case "cost" -> strategy = new CostAnalysisStrategy();
-            default -> {
-                return "Unknown strategy";
-            }
+        AnalysisStrategy strategy = rideAnalysisStrategyRegistry.getStrategy(strategyName.toLowerCase());
+        if (strategy == null) {
+            return "Unknown strategy";
         }
 
         RideAnalysisTemplate template = new ConcreteRideAnalysis(strategy);
+        // Koniec, Tydzień 7, Wzorzec Open Closed 2
         Ride rideToAnalysis = rideRepository.findById(rideId).orElseThrow(() -> new IllegalArgumentException("Ride not found"));
         return template.executeAnalysis(rideToAnalysis);
         // Koniec, Tydzień 6, Wzorzec Strategy 2
