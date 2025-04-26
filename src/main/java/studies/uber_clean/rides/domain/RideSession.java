@@ -10,7 +10,8 @@ public class RideSession {
     private static RideSession instance;
     private final Map<Long, RideOrder> activeRides;
 
-    private RideSession() {
+
+    public RideSession() {
         activeRides = new HashMap<>();
     }
 

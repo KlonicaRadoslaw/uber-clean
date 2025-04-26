@@ -27,6 +27,11 @@ public class Ride implements Cloneable {
 
     public Ride() {}
 
+    public Ride(String destination, String pickupLocation) {
+        this.destination = destination;
+        this.pickupLocation = pickupLocation;
+    }
+
     public Long getRideId() {
         return rideId;
     }
