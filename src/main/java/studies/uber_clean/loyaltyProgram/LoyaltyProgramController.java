@@ -84,4 +84,11 @@ public class LoyaltyProgramController {
     public void grantFreeRideReward(@PathVariable Long userId) {
         loyaltyFacade.grantFreeRideReward(userId);
     }
+
+    @PostMapping("/users/{userId}/rewards/{rewardType}")
+    public String grantReward(@PathVariable Long userId, @PathVariable String rewardType) {
+        loyaltyFacade.grantReward(userId, rewardType);
+        return "Reward " + rewardType + " granted to user " + userId + ".";
+    }
+
 }
