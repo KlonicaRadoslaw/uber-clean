@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 // Tydzień 1, Wzorzec Factory 3
 // Na klasie Vehicle bazują klasy Bike, Car, Scooter
+// Tydzień 8, Wzorzec Liskov 4
+// Klasa bazowa
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -41,3 +43,4 @@ public abstract class Vehicle implements Serializable {
     }
 }
 // Koniec, Tydzień 1, Wzorzec Factory 3
+// Koniec, Tydzień 8, Wzorzec Liskov 4

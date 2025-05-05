@@ -6,6 +6,8 @@ import studies.uber_clean.vehicles.dto.responses.BikeDetailedResponse;
 
 // Tydzień 1, Wzorzec Prototype 2
 // Klasa Bike może sklonować istniejący rower
+// Tydzień 8, Wzorzec Liskov 7
+// Klasa pochodna
 @Entity
 @DiscriminatorValue("BIKE")
 public class Bike extends Vehicle implements Cloneable {
@@ -38,3 +40,4 @@ public class Bike extends Vehicle implements Cloneable {
     }
 }
 // Koniec Tydzień 1, Wzorzec Prototype 1
+// Koniec Tydzień 8, Wzorzec Liskov 7

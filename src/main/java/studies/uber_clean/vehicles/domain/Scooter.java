@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 // Tydzień 1, Wzorzec Prototype 3
+// Tydzień 8, Wzorzec Liskov 6
+// Klasa pochodna
 @Getter
 @Setter
 @Entity
@@ -30,3 +32,4 @@ public class Scooter extends Vehicle implements Cloneable {
     }
 }
 // Koniec, Tydzień 1, Wzorzec Prototype 3
+// Koniec, Tydzień 8, Wzorzec Liskov 6

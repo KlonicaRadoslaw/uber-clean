@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 // Tydzień 1, Wzorzec Factory 1
+// Tydzień 8, Wzorzec Liskov 5
+// Klasa pochodna
 @Getter
 @Setter
 @Entity
@@ -28,3 +30,4 @@ public class Car extends Vehicle {
     }
 }
 // Koniec, Tydzień 1, Wzorzec Factory
+// Koniec, Tydzień 8, Wzorzec Liskov 5
