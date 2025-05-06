@@ -6,6 +6,8 @@ import java.util.Map;
 
 // Tydzień 1, Wzorzec Singleton 1
 // Klasa do śledzenia sesji przejazdów. Tylko jedna instancja do przechowywania wszytkich przejazdów w seji
+// Tydzień 8, Wzorzec Liskov 4
+// Klasa bazowa
 public class RideSession {
     private static RideSession instance;
     private final Map<Long, RideOrder> activeRides;
@@ -43,3 +45,4 @@ public class RideSession {
     }
 }
 // Koniec, Tydzień 1, Wzorzec Singleton 1
+// Koniec, Tydzień 8, Wzorzec Liskov 4

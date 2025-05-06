@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 // Tydzień 1, Wzorzec Factory 3
 // Na klasie Vehicle bazują klasy Bike, Car, Scooter
-// Tydzień 8, Wzorzec Liskov 4
+// Tydzień 8, Wzorzec Liskov 8
 // Klasa bazowa
 @Setter
 @Entity

@@ -13,7 +13,18 @@ public class DiscountController {
     private final DiscountBundle promoBundle = new DiscountBundle("Uber Promotions");
     private final DiscountInvoker invoker = new DiscountInvoker();
     private final DiscountMediatorImpl discountMediator = new DiscountMediatorImpl(promoBundle);
-
+    private final DiscountFacade discountFacade;
+    public DiscountController() {
+        // Dependency Inversion – podajemy implementacje jako abstrakcje
+        this.discountFacade = new DiscountFacade(
+                new PercentageDiscountCalculator(),
+                new MinimumPurchasePolicy(),
+                new ConsoleDiscountLogger(),
+                new SimpleDiscountApplier(),
+                new EmailDiscountNotifier(),
+                new SlackNotifierService()
+        );
+    }
 
     // Tydzień 5, Wzorzec Command 2
     @PostMapping("/add")
@@ -100,4 +111,23 @@ public class DiscountController {
     }
     // Koniec, Tydzień 5, Wzorzec Memento 2
 
+    // Tydzień 8, Wzorzec Dependency Invertion 10
+    @PostMapping("/process-discount")
+    public void processDiscount(String userId, double price) {
+        discountFacade.processDiscount(userId, price);
+    }
+    // Koniec, Tydzień 8, Wzorzec Dependency Invertion 10
+
+    // Tydzień 8, Wzorzec Interface segregation 7
+    @PostMapping("/test-ISP")
+    public void testISP() {
+        DiscountApplier applier = () -> System.out.println("Bulk discount applied!");
+        DiscountLoggerSeparate logger = () -> System.out.println("Logged discount");
+        DiscountNotifierSeparate notifier = () -> System.out.println("Admin notified");
+
+        applier.applyBulkDiscount();
+        logger.log();
+        notifier.notifyAdmin();
+    }
+    // Koniec, Tydzień 8, Wzorzec Interface segregation 7
 }
