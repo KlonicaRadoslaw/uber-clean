@@ -5,15 +5,19 @@ package studies.uber_clean.loyaltyProgram.domain;
  * Konkretna nagroda: Zniżka na przejazd.
  */
 public class DiscountReward extends LoyaltyRewardTemplate {
+    // Tydzień 9, Magic numbers
+    private static final int MIN_POINTS_TO_APPLY_REWARD = 100;
+    // Koniec, Tydzień 9, Magic numbers
+
 
     @Override
     protected boolean isEligible(LoyaltyAccount account) {
-        return account.getPoints() >= 100;
+        return account.getPoints() >= MIN_POINTS_TO_APPLY_REWARD;
     }
 
     @Override
     protected void applyReward(LoyaltyAccount account) {
-        account.setPoints(account.getPoints() - 100);
+        account.setPoints(account.getPoints() - MIN_POINTS_TO_APPLY_REWARD);
         System.out.println("Użytkownik " + account.getUser().getEmail() + " otrzymał 10% zniżki na kolejny przejazd!");
     }
 }
