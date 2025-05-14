@@ -8,6 +8,7 @@ import java.util.Map;
 public class NotificationRateLimiterProxy implements NotificationSender {
     private final NotificationSender realSender;
     private final Map<String, Long> lastSentTime = new HashMap<>();
+    // Tydzień 9, magic numbers
     private static final long THROTTLE_TIME_MS = 5000; // Ograniczenie: 5 sekund między powiadomieniami
 
     public NotificationRateLimiterProxy(NotificationSender realSender) {
@@ -18,6 +19,7 @@ public class NotificationRateLimiterProxy implements NotificationSender {
     public void send(String recipient, String message) {
         long currentTime = System.currentTimeMillis();
         if (lastSentTime.containsKey(recipient) && (currentTime - lastSentTime.get(recipient)) < THROTTLE_TIME_MS) {
+            // Koniec, Tydzień 9, magic numbers
             System.out.println("Rate limit reached: Skipping notification to " + recipient);
             return;
         }

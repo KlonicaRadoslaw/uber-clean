@@ -9,6 +9,9 @@ import java.util.Map;
  * Zapewnia współdzielenie obiektów pojazdów według modelu i producenta.
  */
 public class VehicleFlyweightFactory {
+    // Tydzień 9, Magic numbers
+    private static final int MANUFACTURING_YEAR_EXAMPLE = 2024;
+    private static final int SEATS_EXAMPLE = 4;
     private static final Map<String, Vehicle> vehicleCache = new HashMap<>();
 
     /**
@@ -22,7 +25,8 @@ public class VehicleFlyweightFactory {
 
         // Sprawdzenie czy pojazd już istnieje w cache
         if (!vehicleCache.containsKey(key)) {
-            Vehicle vehicle = new Car(manufacturer, model, "UNKNOWN_VIN", 2024, 4); // Tworzymy domyślny pojazd
+            Vehicle vehicle = new Car(manufacturer, model, "UNKNOWN_VIN", MANUFACTURING_YEAR_EXAMPLE, SEATS_EXAMPLE); // Tworzymy domyślny pojazd
+            // Koniec, Tydzień 9, Magic numbers
             vehicleCache.put(key, vehicle);
         }
         return vehicleCache.get(key);
