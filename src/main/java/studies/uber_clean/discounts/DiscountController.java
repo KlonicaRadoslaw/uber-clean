@@ -14,7 +14,8 @@ public class DiscountController {
     private final DiscountInvoker invoker = new DiscountInvoker();
     private final DiscountMediatorImpl discountMediator = new DiscountMediatorImpl(promoBundle);
     private final DiscountFacade discountFacade;
-    public DiscountController() {
+    private final DiscountService discountService;
+    public DiscountController(DiscountService discountService) {
         // Dependency Inversion – podajemy implementacje jako abstrakcje
         this.discountFacade = new DiscountFacade(
                 new PercentageDiscountCalculator(),
@@ -24,6 +25,8 @@ public class DiscountController {
                 new EmailDiscountNotifier(),
                 new SlackNotifierService()
         );
+
+        this.discountService = discountService;
     }
 
     // Tydzień 5, Wzorzec Command 2
@@ -130,4 +133,11 @@ public class DiscountController {
         notifier.notifyAdmin();
     }
     // Koniec, Tydzień 8, Wzorzec Interface segregation 7
+
+    // Tydzień 11, AspectJ 1
+    @GetMapping("/applyForAspect")
+    public double applyForAspect(@RequestParam double rideCost) {
+        return discountService.applyDiscount(rideCost);
+    }
+    // Koniec, Tydzień 11, AspectJ 1
 }
